@@ -1,11 +1,11 @@
 package com.pjinc.random.selector;
 
 import com.pjinc.resources.V1WordList;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import java.util.Arrays;
 import java.util.List;
-
-import org.junit.Assert;
-import org.junit.Test;
 
 public class RandomSelectorTest {
 
@@ -38,8 +38,9 @@ public class RandomSelectorTest {
                 "BATERIJA",
                 "PRIEPLAUKA"
         );
-        V1WordList codeNames = RandomSelector.selectFrom(wordList);
-        Assert.assertEquals(wordList, codeNames.names);
+        RandomSelector randomSelector = new RandomSelector(wordList);
+        V1WordList codeNames = randomSelector.selectFrom(25);
+        Assertions.assertEquals(wordList, codeNames.names());
     }
 
     @Test
@@ -73,9 +74,9 @@ public class RandomSelectorTest {
                 "PEREJA"
         );
 
-        V1WordList codeNames = RandomSelector.selectFrom(wordList);
-        Assert.assertNotEquals(wordList, codeNames.names);
-        Assert.assertEquals(25, codeNames.names.size());
+        RandomSelector randomSelector = new RandomSelector(wordList);
+        V1WordList codeNames = randomSelector.selectFrom(25);
+        Assertions.assertEquals(25, codeNames.names().size());
     }
 
 }
